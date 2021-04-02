@@ -1,0 +1,21 @@
+.lightbox {
+	display: none;
+	position: fixed;
+	background-color: var(--black-transparent);
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	img {
+		object-fit: contain !important;
+		margin: 1rem auto !important;
+		max-width: 95%;
+		border-radius: 7px;
+		cursor: pointer;
+	}
+}
+
+.lightbox-active {
+	display: flex;
+}
