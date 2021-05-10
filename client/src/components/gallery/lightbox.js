@@ -38,7 +38,12 @@ const Lightbox = ({ filteredPhotos }) => {
 	//Change image on keypress
 	const changeImage = useCallback(
 		(e) => {
-			if (document.location.pathname !== "/portfolio" || currentPhotoId === null) return;
+			if (
+				document.location.pathname !== "/portfolio" ||
+				document.location.pathname !== "/portfolio/" ||
+				currentPhotoId === null
+			)
+				return;
 			const key = e.keyCode;
 			const indexOf = filteredPhotos.indexOf(currentPhoto);
 			//Close image
