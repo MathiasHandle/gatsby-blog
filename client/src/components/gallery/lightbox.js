@@ -6,10 +6,6 @@ const Lightbox = ({ filteredPhotos }) => {
 	const [currentPhotoId, setCurrentPhotoId] = useState(null);
 	const currentPhoto = filteredPhotos.filter((photo) => photo.strapiId === currentPhotoId)[0];
 
-	useEffect(() => {
-		console.log(currentPhotoId);
-	}, [currentPhotoId]);
-
 	//Select image on click
 	const selectImage = useCallback(
 		(e) => {
