@@ -34,12 +34,7 @@ const Lightbox = ({ filteredPhotos }) => {
 	//Change image on keypress
 	const changeImage = useCallback(
 		(e) => {
-			if (
-				document.location.pathname !== "/portfolio" ||
-				document.location.pathname !== "/portfolio/" ||
-				currentPhotoId === null
-			)
-				return;
+			if (!document.location.pathname.includes("/portfolio") || currentPhotoId === null) return;
 			const key = e.keyCode;
 			const indexOf = filteredPhotos.indexOf(currentPhoto);
 			//Close image
@@ -60,7 +55,6 @@ const Lightbox = ({ filteredPhotos }) => {
 				//if currently selected img is first one in an array
 				if (indexOf === 0) {
 					setCurrentPhotoId(filteredPhotos.slice(-1)[0].strapiId);
-					//setCurrentPhotoId(getFirstLastElements(filteredPhotos)[1]);
 				} else {
 					setCurrentPhotoId(filteredPhotos[indexOf - 1].strapiId);
 				}
