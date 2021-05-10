@@ -6,13 +6,20 @@ const Lightbox = ({ filteredPhotos }) => {
 	const [currentPhotoId, setCurrentPhotoId] = useState(null);
 	const currentPhoto = filteredPhotos.filter((photo) => photo.strapiId === currentPhotoId)[0];
 
+	useEffect(() => {
+		console.log(currentPhotoId);
+	}, [currentPhotoId]);
+
 	//Select image on click
 	const selectImage = useCallback(
 		(e) => {
+			//Closing lightbox when clicking on opened image
 			if (e.target.id === "lightbox-image") {
 				setCurrentPhotoId(null);
 				return;
 			}
+			//Selecting image, or closing lightbox when clicking outside of opened image
+			//gatsby-image plugin doesnt allow custom data- attribute, so Ive set strapiID as a class
 			const divId = parseInt(e.target.parentElement.parentElement.className.split(" ")[0]);
 			const imgSelected = e.target.parentElement.parentElement.className.includes("gatsby-image-wrapper");
 			imgSelected && isNaN(divId) === false ? setCurrentPhotoId(divId) : setCurrentPhotoId(null);
@@ -49,7 +56,7 @@ const Lightbox = ({ filteredPhotos }) => {
 			}
 			//Prev image
 			else if (key === 37) {
-				//if ucrrently selected img is first one in an array
+				//if currently selected img is first one in an array
 				if (indexOf === 0) {
 					setCurrentPhotoId(filteredPhotos.slice(-1)[0].strapiId);
 					//setCurrentPhotoId(getFirstLastElements(filteredPhotos)[1]);
